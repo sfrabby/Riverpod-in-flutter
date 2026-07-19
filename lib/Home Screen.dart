@@ -18,19 +18,36 @@ class homeScreen extends StatelessWidget {
           Center(
             child: Card(
               elevation: 09,
-              child: Text(
-                "100",
-                style: TextStyle(fontSize: 40, fontWeight: FontWeight.w800),
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Text(
+                  "100",
+                  style: TextStyle(fontSize: 40, fontWeight: FontWeight.w800),
+                ),
               ),
             ),
           ),
 
-          Row(children: [
-            ElevatedButton(onPressed: (){}, child: Text("+")),
-            ElevatedButton(onPressed: (){}, child: Text("-")),
+          Center(
+
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+
+              children: [
+
+              Card( elevation: 05,  child: Padding(
+                padding: const EdgeInsets.all(20),
+                child: ElevatedButton(onPressed: (){}, child: Text("+")),
+              )),
+
+              Card( elevation: 05, child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: ElevatedButton(onPressed: (){}, child: Text("-")),
+              )),
 
 
-          ],)
+            ],),
+          )
         ],
       ),
     );
