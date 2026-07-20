@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/legacy.dart';
+import 'package:riverpod/riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class homeScreen extends StatelessWidget {
+final counter = StateProvider<int>((ref) {
+  return 0;
+});
+
+class homeScreen extends ConsumerWidget {
   const homeScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final count = ref.watch(counter);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.teal,
@@ -15,39 +23,49 @@ class homeScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
 
         children: [
-          Center(
-            child: Card(
-              elevation: 09,
-              child: Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Text(
-                  "100",
-                  style: TextStyle(fontSize: 40, fontWeight: FontWeight.w800),
+          Consumer(builder: (context, ref, child) {
+            return Center(
+              child: Card(
+                elevation: 09,
+                child: Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Text(
+                    count.toString(),
+                    style: TextStyle(fontSize: 40, fontWeight: FontWeight.w800),
+                  ),
                 ),
               ),
-            ),
-          ),
+            );
+          },),
+
 
           Center(
-
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
 
               children: [
+                Card(
+                  elevation: 05,
+                  child: Padding(
+                    padding: const EdgeInsets.all(20),
+                    child: ElevatedButton(onPressed: () {
+                      ref.read(counter.notifier).state++;
+                    }, child: Text("+")),
+                  ),
+                ),
 
-              Card( elevation: 05,  child: Padding(
-                padding: const EdgeInsets.all(20),
-                child: ElevatedButton(onPressed: (){}, child: Text("+")),
-              )),
-
-              Card( elevation: 05, child: Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: ElevatedButton(onPressed: (){}, child: Text("-")),
-              )),
-
-
-            ],),
-          )
+                Card(
+                  elevation: 05,
+                  child: Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: ElevatedButton(onPressed: () {
+                      ref.read(counter.notifier).state--;
+                    }, child: Text("-")),
+                  ),
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );
