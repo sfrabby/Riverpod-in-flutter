@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'Home Screen.dart';
-import 'multi provider.dart';
+import 'Multi Provider/multi provider.dart';
 
 void main() {
   runApp(const MyApp());
