@@ -7,6 +7,10 @@ final counter = StateProvider<int>((ref) {
   return 0;
 });
 
+final switchProvider = StateProvider<bool>((ref) {
+  return false;
+});
+
 class homeScreen extends ConsumerWidget {
   const homeScreen({super.key});
 
@@ -36,6 +40,14 @@ class homeScreen extends ConsumerWidget {
                 ),
               ),
             );
+          },),
+
+
+          Consumer(builder: (context, ref, child) {
+            final val = ref.watch(switchProvider);
+            return Switch(value: val, onChanged: (value){
+              ref.read(switchProvider.notifier).state = value;
+            });
           },),
 
 
