@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/legacy.dart';
 
-class stateNotifer extends StatelessWidget {
-  const stateNotifer({super.key});
+final searchProvider = StateNotifierProvider<SearchNotifier, String>((ref) {
+  return SearchNotifier();
+});
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(backgroundColor: Colors.teal,
-      title: Text("State Notifier"),),
-    );
+class SearchNotifier extends StateNotifier <String> {
+  SearchNotifier() : super('');
+
+  void search (String query){
+    state = query;
   }
 }
