@@ -11,7 +11,8 @@ class Futureui extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(backgroundColor: Colors.teal ,title: Text("Future Provider"),),
 
-      body: Center(child: provider.when(data: data, error: (error, stackTrace) => Text(error.toString()), loading: loading) ,),
+      body: Center(child: provider.when(data: (data) => Text(data.toString()), error: (error, stackTrace) => Text(error.toString()), loading: () => CircularProgressIndicator() ,),
+      )
     );
   }
 }

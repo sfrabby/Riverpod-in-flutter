@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'Future/FutureUI.dart';
 import 'Home Screen.dart';
 import 'Multi Provider/multi provider.dart';
 import 'State Notifer/UI.dart';
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
-        home:  UI(),
+        home:  Futureui(),
       ),
     );
   }
