@@ -29,6 +29,12 @@ class UI extends ConsumerWidget {
                     },
                     icon: Icon(Icons.delete, color: Colors.red),
                   ),
+                  IconButton(
+                    onPressed: () {
+                      ref.read(itemProvider.notifier).updateItem(itemDetail.id, 'Ratul');
+                    },
+                    icon: Icon(Icons.edit, color: Colors.green),
+                  ),
                 ],
               ),
             ),
