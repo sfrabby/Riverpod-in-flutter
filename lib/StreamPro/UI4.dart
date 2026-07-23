@@ -1,4 +1,4 @@
-
+import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -11,19 +11,19 @@ class ClockScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final clock = ref.watch(clockProvider);
-
+    log("build");
     return Scaffold(
-      body: Center(
-        child: clock.when(
-          data: (time) => Text(
-            time.toString(),
-            style: const TextStyle(fontSize: 25),
+      body: Consumer(builder: (context, ref, child) {
+        final clock = ref.watch(clockProvider);
+        return Center(
+          child: clock.when(
+            data: (time) =>
+                Text(time.toString(), style: const TextStyle(fontSize: 25)),
+            loading: () => const CircularProgressIndicator(),
+            error: (e, s) => Text(e.toString()),
           ),
-          loading: () => const CircularProgressIndicator(),
-          error: (e, s) => Text(e.toString()),
-        ),
-      ),
+        );
+      },)
     );
   }
 }
